@@ -64,13 +64,13 @@ class ApiController extends Controller
     {
         $all = $request->allData;
         if (empty($all)) {
-            $data = Sura::select('*')->orderBy('serial_no', 'asc')->paginate(50);
+            $suras = Sura::select('*')->orderBy('serial_no', 'asc')->paginate(50);
             $status = true;
-            return response()->json(compact('status', 'data'));
+            return response()->json(compact('status', 'suras'));
         } else {
-            $data = Sura::all();
+            $suras = Sura::all();
             $status = true;
-            return response()->json(compact('status', 'data'));
+            return response()->json(compact('status', 'suras'));
         }
     }
 
