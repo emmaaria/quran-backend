@@ -39,7 +39,7 @@ class ApiController extends Controller
             return response()->json(compact('status', 'errors'));
         }
         $status = true;
-        $user = User::select('id', 'name', 'email', 'role')->where('email', $request->email)->first();
+        $user = User::select('id', 'name', 'email')->where('email', $request->email)->first();
         return response()->json(compact('status', 'user', 'token'));
     }
 
