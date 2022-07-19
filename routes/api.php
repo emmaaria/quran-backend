@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'api'], function ($router) {
     Route::post('login', [\App\Http\Controllers\ApiController::class, 'login']);
     Route::get('/profile', [\App\Http\Controllers\ApiController::class, 'profile']);
-    Route::get('/category', [\App\Http\Controllers\ApiController::class, 'getCategories']);
+
+    Route::get('/sura', [\App\Http\Controllers\ApiController::class, 'getSuras']);
     Route::get('/category/{id}', [\App\Http\Controllers\ApiController::class, 'getCategory']);
     Route::post('/category/store', [\App\Http\Controllers\ApiController::class, 'storeCategory']);
     Route::post('/category/update', [\App\Http\Controllers\ApiController::class, 'updateCategory']);

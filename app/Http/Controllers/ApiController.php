@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sura;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,5 +54,29 @@ class ApiController extends Controller
         $this->guard()->logout();
         return response()->json(['message' => 'Successfully logged out'], 200);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sura Functions Start
+    |--------------------------------------------------------------------------
+    */
+    public function getSuras(Request $request)
+    {
+        $all = $request->allData;
+        if (empty($all)) {
+            $data = Sura::select('*')->paginate(50);
+            $status = true;
+            return response()->json(compact('status', 'data'));
+        } else{
+            $data = Sura::all();
+            $status = true;
+            return response()->json(compact('status', 'data'));
+        }
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | Sura Functions End
+    |--------------------------------------------------------------------------
+    */
 
 }
