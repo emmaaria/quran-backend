@@ -86,7 +86,6 @@ class ComposerStaticInitdf8e0732c33bb66ed26c29372ec37aaf
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
-            'Skycoder\\InvoiceNumberGenerator\\' => 32,
         ),
         'R' => 
         array (
@@ -318,10 +317,6 @@ class ComposerStaticInitdf8e0732c33bb66ed26c29372ec37aaf
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
-        ),
-        'Skycoder\\InvoiceNumberGenerator\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/skycoder/invoice-number-generator/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -612,6 +607,7 @@ class ComposerStaticInitdf8e0732c33bb66ed26c29372ec37aaf
         'Carbon\\Exceptions\\BadFluentConstructorException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentConstructorException.php',
         'Carbon\\Exceptions\\BadFluentSetterException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentSetterException.php',
         'Carbon\\Exceptions\\BadMethodCallException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadMethodCallException.php',
+        'Carbon\\Exceptions\\EndLessPeriodException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/EndLessPeriodException.php',
         'Carbon\\Exceptions\\Exception' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/Exception.php',
         'Carbon\\Exceptions\\ImmutableException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/ImmutableException.php',
         'Carbon\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidArgumentException.php',
@@ -4810,9 +4806,6 @@ class ComposerStaticInitdf8e0732c33bb66ed26c29372ec37aaf
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
-        'Skycoder\\InvoiceNumberGenerator\\InvoiceNumberGeneratorService' => __DIR__ . '/..' . '/skycoder/invoice-number-generator/src/InvoiceNumberGeneratorService.php',
-        'Skycoder\\InvoiceNumberGenerator\\InvoiceNumberGeneratorServiceProvider' => __DIR__ . '/..' . '/skycoder/invoice-number-generator/src/InvoiceNumberGeneratorServiceProvider.php',
-        'Skycoder\\InvoiceNumberGenerator\\Models\\InvoiceNumber' => __DIR__ . '/..' . '/skycoder/invoice-number-generator/src/Models/InvoiceNumber.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Attribute\\AsCommand' => __DIR__ . '/..' . '/symfony/console/Attribute/AsCommand.php',
