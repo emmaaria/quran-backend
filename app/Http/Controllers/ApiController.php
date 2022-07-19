@@ -78,9 +78,9 @@ class ApiController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-                'arabic_name' => 'required',
-                'bangla_name' => 'required',
-                'serial_no' => ['required', 'unique:suras'],
+                'banglaName' => 'required',
+                'arabicName' => 'required',
+                'serial' => ['required', 'unique:suras'],
             ]
         );
         if ($validator->fails()) {
@@ -89,9 +89,9 @@ class ApiController extends Controller
             return response()->json(compact('status', 'errors'));
         }
         $save = Sura::create([
-            'arabic_name' => $request->arabic_name,
-            'bangla_name' => $request->arabic_name,
-            'serial_no' => $request->serial_no]
+            'arabic_name' => $request->arabicName,
+            'bangla_name' => $request->banglaName,
+            'serial_no' => $request->serial]
         );
         if ($save) {
             $status = true;
