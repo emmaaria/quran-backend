@@ -64,7 +64,7 @@ class ApiController extends Controller
     {
         $all = $request->allData;
         if (empty($all)) {
-            $data = Sura::select('*')->orderBy('serial_no','asc')->paginate(50);
+            $data = Sura::select('*')->orderBy('serial_no', 'asc')->paginate(50);
             $status = true;
             return response()->json(compact('status', 'data'));
         } else {
@@ -80,7 +80,7 @@ class ApiController extends Controller
             [
                 'banglaName' => 'required',
                 'arabicName' => 'required',
-                'serial' => ['required', 'unique:suras'],
+                'serial_no' => ['required', 'unique:suras'],
             ]
         );
         if ($validator->fails()) {
@@ -88,10 +88,12 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        $save = Sura::create([
-            'arabic_name' => $request->arabicName,
-            'bangla_name' => $request->banglaName,
-            'serial_no' => $request->serial]
+        $save = Sura::create(
+            [
+                'arabic_name' => $request->arabicName,
+                'bangla_name' => $request->banglaName,
+                'serial_no' => $request->serial_no
+            ]
         );
         if ($save) {
             $status = true;
