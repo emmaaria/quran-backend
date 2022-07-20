@@ -74,6 +74,13 @@ class ApiController extends Controller
         }
     }
 
+    public function getSura($id)
+    {
+        $sura = Sura::where('id', $id)->first();
+        $status = true;
+        return response()->json(compact('status', 'sura'));
+    }
+
     public function storeSura(Request $request)
     {
         $validator = Validator::make($request->all(),
