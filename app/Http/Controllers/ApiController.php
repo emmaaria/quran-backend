@@ -135,6 +135,26 @@ class ApiController extends Controller
         $message = 'Updated';
         return response()->json(compact('status', 'message'));
     }
+    public function deleteSura(Request $request)
+    {
+        $id = $request->id;
+        if (!empty($id)) {
+            $deleted = Sura::where('id', $id)->delete();
+            if ($deleted) {
+                $status = true;
+                $message = 'Sura deleted';
+                return response()->json(compact('status', 'message'));
+            } else {
+                $status = false;
+                $error = 'Sura not found';
+                return response()->json(compact('status', 'error'));
+            }
+        } else {
+            $status = false;
+            $error = 'Sura not found';
+            return response()->json(compact('status', 'error'));
+        }
+    }
     /*
     |--------------------------------------------------------------------------
     | Sura Functions End
