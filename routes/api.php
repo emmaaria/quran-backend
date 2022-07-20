@@ -19,7 +19,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::get('/profile', [\App\Http\Controllers\ApiController::class, 'profile']);
 
     Route::get('/sura', [\App\Http\Controllers\ApiController::class, 'getSuras']);
-    Route::get('/category/{id}', [\App\Http\Controllers\ApiController::class, 'getCategory']);
+    Route::get('/sura/{id}', [\App\Http\Controllers\ApiController::class, 'getSura']);
     Route::post('/sura/save', [\App\Http\Controllers\ApiController::class, 'storeSura']);
     Route::post('/category/update', [\App\Http\Controllers\ApiController::class, 'updateCategory']);
     Route::post('/category/delete', [\App\Http\Controllers\ApiController::class, 'deleteCategory']);
