@@ -110,6 +110,31 @@ class ApiController extends Controller
             return response()->json(compact('status'));
         }
     }
+
+    public function updateSura(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'id' => 'required',
+                'banglaName' => 'required',
+                'arabicName' => 'required',
+                'serial_no' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        Sura::where('id', $request->id)->update([
+            'arabic_name' => $request->arabicName,
+            'bangla_name' => $request->banglaName,
+            'serial_no' => $request->serial_no
+        ]);
+        $status = true;
+        $message = 'Updated';
+        return response()->json(compact('status', 'message'));
+    }
     /*
     |--------------------------------------------------------------------------
     | Sura Functions End
