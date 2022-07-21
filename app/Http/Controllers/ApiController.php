@@ -172,11 +172,11 @@ class ApiController extends Controller
         $all = $request->allData;
         $sura = $request->sura;
         if (empty($all)) {
-            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial_no, SIGNED) asc')->paginate(50);
+            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial, SIGNED) asc')->paginate(50);
             $status = true;
             return response()->json(compact('status', 'chapters'));
         } else {
-            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial_no, SIGNED) asc')->all();
+            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial, SIGNED) asc')->all();
             $status = true;
             return response()->json(compact('status', 'chapters'));
         }
