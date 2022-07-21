@@ -96,7 +96,7 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        $save = DB::table('suras')->create(
+        $save = DB::table('suras')->insert(
             [
                 'arabic_name' => $request->arabicName,
                 'bangla_name' => $request->banglaName,
@@ -188,7 +188,7 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        $save = DB::table('chapters')->create(
+        $save = DB::table('chapters')->insert(
             [
                 'arabic' => $request->arabic,
                 'bangla' => $request->bangla,
