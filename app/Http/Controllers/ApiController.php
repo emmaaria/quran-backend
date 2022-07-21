@@ -77,7 +77,7 @@ class ApiController extends Controller
 
     public function getSura($id)
     {
-        $sura = Sura::where('id', $id)->first();
+        $sura = DB::table('suras')->where('id', $id)->first();
         $status = true;
         return response()->json(compact('status', 'sura'));
     }
