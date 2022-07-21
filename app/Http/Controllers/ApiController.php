@@ -303,8 +303,9 @@ class ApiController extends Controller
     {
         $keyword = $request->keyword;
         $chapters = DB::table('chapters')
-            ->select('chapters.id', 'chapters.serial', 'chapters.arabic')
-            ->where('chapters.bangla', 'like', '%' . $keyword . '%')
+            ->select('chapters.id', 'suras.serial_no', 'chapters.serial', 'chapters.arabic')
+            ->join('suras', 'suras.id', '=' , 'chapters.sura')
+            ->where('chapters.arabic', 'like', '%' . 'يَكَادُ الْبَرْقُ يَخْطَفُ' . '%')
             ->paginate(10);
         $status = true;
         return response()->json(compact('status', 'chapters'));
