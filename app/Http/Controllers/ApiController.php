@@ -214,6 +214,26 @@ class ApiController extends Controller
             return response()->json(compact('status'));
         }
     }
+    public function deleteChapter(Request $request)
+    {
+        $id = $request->id;
+        if (!empty($id)) {
+            $deleted = DB::table('chapters')->where('id', $id)->delete();
+            if ($deleted) {
+                $status = true;
+                $message = 'Chapter deleted';
+                return response()->json(compact('status', 'message'));
+            } else {
+                $status = false;
+                $error = 'Chapter not found';
+                return response()->json(compact('status', 'error'));
+            }
+        } else {
+            $status = false;
+            $error = 'Chapter not found';
+            return response()->json(compact('status', 'error'));
+        }
+    }
     /*
     |--------------------------------------------------------------------------
     | Chapter Functions End
