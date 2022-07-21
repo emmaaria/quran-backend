@@ -96,7 +96,7 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        $save = Sura::create(
+        $save = DB::table('suras')->create(
             [
                 'arabic_name' => $request->arabicName,
                 'bangla_name' => $request->banglaName,
@@ -127,7 +127,7 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        Sura::where('id', $request->id)->update([
+        DB::table('suras')->where('id', $request->id)->update([
             'arabic_name' => $request->arabicName,
             'bangla_name' => $request->banglaName,
             'serial_no' => $request->serial_no
@@ -140,7 +140,7 @@ class ApiController extends Controller
     {
         $id = $request->id;
         if (!empty($id)) {
-            $deleted = Sura::where('id', $id)->delete();
+            $deleted = DB::table('suras')->where('id', $id)->delete();
             if ($deleted) {
                 $status = true;
                 $message = 'Sura deleted';
@@ -169,7 +169,7 @@ class ApiController extends Controller
     */
     public function getChapters($sura)
     {
-        $chapters = Chapter::where('sura', $sura)->get();
+        $chapters = DB::table('chapters')->where('sura', $sura)->get();
         $status = true;
         return response()->json(compact('status', 'chapters'));
     }
