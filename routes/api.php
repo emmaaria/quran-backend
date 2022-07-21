@@ -24,11 +24,11 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('/sura/update', [\App\Http\Controllers\ApiController::class, 'updateSura']);
     Route::post('/sura/delete', [\App\Http\Controllers\ApiController::class, 'deleteSura']);
 
-    Route::get('/unit', [\App\Http\Controllers\ApiController::class, 'getUnits']);
-    Route::get('/unit/{id}', [\App\Http\Controllers\ApiController::class, 'getUnit']);
-    Route::post('/unit/store', [\App\Http\Controllers\ApiController::class, 'storeUnit']);
-    Route::post('/unit/update', [\App\Http\Controllers\ApiController::class, 'updateUnit']);
-    Route::post('/unit/delete', [\App\Http\Controllers\ApiController::class, 'deleteUnit']);
+    Route::get('/{sura}/chapter', [\App\Http\Controllers\ApiController::class, 'getChapters']);
+    Route::get('/chapter/{id}', [\App\Http\Controllers\ApiController::class, 'getChapter']);
+    Route::post('/chapter/store', [\App\Http\Controllers\ApiController::class, 'storeChapter']);
+    Route::post('/chapter/update', [\App\Http\Controllers\ApiController::class, 'updateChapter']);
+    Route::post('/chapter/delete', [\App\Http\Controllers\ApiController::class, 'deleteChapter']);
 
     Route::get('/customer', [\App\Http\Controllers\ApiController::class, 'getCustomers']);
     Route::get('/customer/{id}', [\App\Http\Controllers\ApiController::class, 'getCustomer']);

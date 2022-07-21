@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use App\Models\Sura;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -161,4 +162,15 @@ class ApiController extends Controller
     |--------------------------------------------------------------------------
     */
 
+    /*
+    |--------------------------------------------------------------------------
+    | Chapter Functions Start
+    |--------------------------------------------------------------------------
+    */
+    public function getChapters($sura)
+    {
+        $chapters = Chapter::where('sura', $sura)->get();
+        $status = true;
+        return response()->json(compact('status', 'chapters'));
+    }
 }
