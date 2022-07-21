@@ -298,6 +298,18 @@ class ApiController extends Controller
         $status = true;
         return response()->json(compact('status', 'chapters'));
     }
+
+    public function searchChapters(Request $request)
+    {
+        $keyword = $request->keyword;
+        $chapters = DB::table('chapters')
+            ->select('chapters.id', 'suras.serial_no', 'chapters.serial', 'chapters.arabic')
+            ->join('suras', 'suras.id', '=' , 'chapters.sura')
+            ->where('chapters.arabic', 'like', '%' . $keyword . '%')
+            ->paginate(10);
+        $status = true;
+        return response()->json(compact('status', 'chapters'));
+    }
     /*
     |--------------------------------------------------------------------------
     | Frontend Functions End
