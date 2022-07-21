@@ -69,7 +69,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json(compact('status', 'suras'));
         } else {
-            $suras = DB::table('suras')->orderByRaw('CONVERT(serial_no, SIGNED) asc')->all();
+            $suras = DB::table('suras')->orderByRaw('CONVERT(serial_no, SIGNED) asc')->get();
             $status = true;
             return response()->json(compact('status', 'suras'));
         }
@@ -176,7 +176,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json(compact('status', 'chapters'));
         } else {
-            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial, SIGNED) asc')->all();
+            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial, SIGNED) asc')->get();
             $status = true;
             return response()->json(compact('status', 'chapters'));
         }
