@@ -14,7 +14,7 @@ class ApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters', 'getChapterBySura']]);
+        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters', 'getChapterBySura', 'searchChapters']]);
     }
 
     protected function guard()
