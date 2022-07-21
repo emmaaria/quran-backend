@@ -286,12 +286,13 @@ class ApiController extends Controller
     | Frontend Functions Start
     |--------------------------------------------------------------------------
     */
-    public function getChapterBySura(Request $request){
+    public function getChapterBySura(Request $request)
+    {
         $sura = $request->sura;
         $chapter = $request->chapter;
-        $chapters = DB::table('chapters')->where('sura',$sura)->paginate(10);
+        $chapters = DB::table('chapters')->where('sura', $sura)->paginate(10);
         $status = true;
-        return response()->json(compact('status',$chapters));
+        return response()->json(compact('status', 'chapters'));
     }
     /*
     |--------------------------------------------------------------------------
