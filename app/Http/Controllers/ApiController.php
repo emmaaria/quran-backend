@@ -14,7 +14,7 @@ class ApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters']]);
+        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters', 'getChapterBySura']]);
     }
 
     protected function guard()
@@ -278,6 +278,24 @@ class ApiController extends Controller
     /*
     |--------------------------------------------------------------------------
     | Chapter Functions End
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | Frontend Functions Start
+    |--------------------------------------------------------------------------
+    */
+    public function getChapterBySura(Request $request){
+        $sura = $request->sura;
+        $chapter = $request->chapter;
+        $chapters = DB::table('chapters')->where('sura',$sura)->paginate(10);
+        $status = true;
+        return response()->json(compact('status',$chapters));
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | Frontend Functions End
     |--------------------------------------------------------------------------
     */
 }
