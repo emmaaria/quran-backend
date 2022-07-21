@@ -188,7 +188,7 @@ class ApiController extends Controller
             [
                 'arabic' => 'required',
                 'sura' => 'required',
-                'serial' => ['required', 'unique:chapters'],
+                'serial' => 'required',
             ]
         );
         if ($validator->fails()) {
