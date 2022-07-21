@@ -14,7 +14,7 @@ class ApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.custom:api', ['except' => ['login','getSuras', 'getChapters']]);
+        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters']]);
     }
 
     protected function guard()
@@ -136,6 +136,7 @@ class ApiController extends Controller
         $message = 'Updated';
         return response()->json(compact('status', 'message'));
     }
+
     public function deleteSura(Request $request)
     {
         $id = $request->id;
@@ -167,10 +168,9 @@ class ApiController extends Controller
     | Chapter Functions Start
     |--------------------------------------------------------------------------
     */
-    public function getChapters(Request $request)
+    public function getChapters($sura, Request $request)
     {
         $all = $request->allData;
-        $sura = $request->sura;
         if (empty($all)) {
             $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial, SIGNED) asc')->paginate(50);
             $status = true;
@@ -214,6 +214,7 @@ class ApiController extends Controller
             return response()->json(compact('status'));
         }
     }
+
     public function deleteChapter(Request $request)
     {
         $id = $request->id;
@@ -234,6 +235,7 @@ class ApiController extends Controller
             return response()->json(compact('status', 'error'));
         }
     }
+
     public function getChapter($id)
     {
         $chapter = DB::table('chapters')->where('id', $id)->first();
@@ -256,7 +258,7 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        $save = DB::table('chapters')->where('id',$request->id)->update(
+        $save = DB::table('chapters')->where('id', $request->id)->update(
             [
                 'arabic' => $request->arabic,
                 'bangla' => $request->bangla,
