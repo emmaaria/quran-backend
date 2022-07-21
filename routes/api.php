@@ -26,7 +26,7 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     Route::get('/{sura}/chapter', [\App\Http\Controllers\ApiController::class, 'getChapters']);
     Route::get('/chapter/{id}', [\App\Http\Controllers\ApiController::class, 'getChapter']);
-    Route::post('/chapter/store', [\App\Http\Controllers\ApiController::class, 'storeChapter']);
+    Route::post('/chapter/save', [\App\Http\Controllers\ApiController::class, 'storeChapter']);
     Route::post('/chapter/update', [\App\Http\Controllers\ApiController::class, 'updateChapter']);
     Route::post('/chapter/delete', [\App\Http\Controllers\ApiController::class, 'deleteChapter']);
 

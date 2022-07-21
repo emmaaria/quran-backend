@@ -173,4 +173,42 @@ class ApiController extends Controller
         $status = true;
         return response()->json(compact('status', 'chapters'));
     }
+
+    public function storeChapter(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'arabic' => 'required',
+                'sura' => 'required',
+                'serial' => ['required', 'unique:chapters'],
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $save = DB::table('chapters')->create(
+            [
+                'arabic' => $request->arabic,
+                'bangla' => $request->bangla,
+                'shortTafsil' => $request->shortTafsil,
+                'longTafsil' => $request->longTafsil,
+                'serial' => $request->serial,
+                'sura' => $request->sura,
+            ]
+        );
+        if ($save) {
+            $status = true;
+            return response()->json(compact('status'));
+        } else {
+            $status = false;
+            return response()->json(compact('status'));
+        }
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | Chapter Functions End
+    |--------------------------------------------------------------------------
+    */
 }
