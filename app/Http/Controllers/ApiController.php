@@ -234,6 +234,12 @@ class ApiController extends Controller
             return response()->json(compact('status', 'error'));
         }
     }
+    public function getChapter($id)
+    {
+        $chapter = DB::table('chapters')->where('id', $id)->first();
+        $status = true;
+        return response()->json(compact('status', 'chapter'));
+    }
     /*
     |--------------------------------------------------------------------------
     | Chapter Functions End
