@@ -167,11 +167,19 @@ class ApiController extends Controller
     | Chapter Functions Start
     |--------------------------------------------------------------------------
     */
-    public function getChapters($sura)
+    public function getChapters(Request $request)
     {
-        $chapters = DB::table('chapters')->where('sura', $sura)->get();
-        $status = true;
-        return response()->json(compact('status', 'chapters'));
+        $all = $request->allData;
+        $sura = $request->sura;
+        if (empty($all)) {
+            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial_no, SIGNED) asc')->paginate(50);
+            $status = true;
+            return response()->json(compact('status', 'chapters'));
+        } else {
+            $chapters = DB::table('chapters')->where('sura', $sura)->orderByRaw('CONVERT(serial_no, SIGNED) asc')->all();
+            $status = true;
+            return response()->json(compact('status', 'chapters'));
+        }
     }
 
     public function storeChapter(Request $request)
