@@ -290,7 +290,11 @@ class ApiController extends Controller
     {
         $sura = $request->sura;
         $chapter = $request->chapter;
-        $chapters = DB::table('chapters')->where('sura', $sura)->paginate(10);
+        if (empty($chapter)) {
+            $chapters = DB::table('chapters')->where('sura', $sura)->paginate(10);
+        } else {
+            $chapters = DB::table('chapters')->where('sura', $sura)->where('id', '>=', $chapter)->paginate(10);
+        }
         $status = true;
         return response()->json(compact('status', 'chapters'));
     }
