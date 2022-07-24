@@ -332,6 +332,13 @@ class ApiController extends Controller
             return response()->json(compact('status'));
         }
     }
+
+    public function getDua($id)
+    {
+        $chapter = DB::table('duas')->where('id', $id)->first();
+        $status = true;
+        return response()->json(compact('status', 'chapter'));
+    }
     /*
     |--------------------------------------------------------------------------
     | Dua Functions End

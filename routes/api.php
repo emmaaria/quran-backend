@@ -33,7 +33,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('/search/chapters', [\App\Http\Controllers\ApiController::class, 'searchChapters']);
 
     Route::get('/dua', [\App\Http\Controllers\ApiController::class, 'getDuas']);
-    Route::get('/customer/{id}', [\App\Http\Controllers\ApiController::class, 'getCustomer']);
+    Route::get('/dua/{id}', [\App\Http\Controllers\ApiController::class, 'getDua']);
     Route::post('/dua/save', [\App\Http\Controllers\ApiController::class, 'storeDua']);
     Route::post('/customer/update', [\App\Http\Controllers\ApiController::class, 'updateCustomer']);
     Route::post('/customer/delete', [\App\Http\Controllers\ApiController::class, 'deleteCustomer']);
