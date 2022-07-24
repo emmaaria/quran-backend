@@ -290,7 +290,7 @@ class ApiController extends Controller
     {
         $all = $request->allData;
         $type = $request->type;
-        if (empty($all)) {
+        if (empty($all) && empty($type)) {
             $duas = DB::table('duas')->paginate(50);
             $status = true;
             return response()->json(compact('status', 'duas'));
