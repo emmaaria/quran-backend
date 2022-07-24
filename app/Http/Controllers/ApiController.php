@@ -335,9 +335,9 @@ class ApiController extends Controller
 
     public function getDua($id)
     {
-        $chapter = DB::table('duas')->where('id', $id)->first();
+        $dua = DB::table('duas')->where('id', $id)->first();
         $status = true;
-        return response()->json(compact('status', 'chapter'));
+        return response()->json(compact('status', 'dua'));
     }
     /*
     |--------------------------------------------------------------------------
