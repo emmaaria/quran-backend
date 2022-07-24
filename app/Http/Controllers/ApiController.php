@@ -294,7 +294,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json(compact('status', 'duas'));
         } else {
-            $duas = DB::table('suras')->get();
+            $duas = DB::table('duas')->get();
             $status = true;
             return response()->json(compact('status', 'duas'));
         }
