@@ -299,6 +299,39 @@ class ApiController extends Controller
             return response()->json(compact('status', 'duas'));
         }
     }
+    public function storeDua(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'banglaName' => 'required',
+                'arabicName' => 'required',
+                'banglaText' => 'required',
+                'arabicText' => 'required',
+                'type' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $save = DB::table('duas')->insert(
+            [
+                'banglaName' => $request->banglaName,
+                'arabicName' => $request->arabicName,
+                'banglaText' => $request->banglaText,
+                'arabicText' => $request->arabicText,
+                'type' => $request->type
+            ]
+        );
+        if ($save) {
+            $status = true;
+            return response()->json(compact('status'));
+        } else {
+            $status = false;
+            return response()->json(compact('status'));
+        }
+    }
     /*
     |--------------------------------------------------------------------------
     | Dua Functions End
