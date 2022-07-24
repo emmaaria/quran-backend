@@ -14,7 +14,7 @@ class ApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters', 'getChapterBySura', 'searchChapters']]);
+        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters', 'getChapterBySura', 'searchChapters','getDuas']]);
     }
 
     protected function guard()
@@ -278,6 +278,30 @@ class ApiController extends Controller
     /*
     |--------------------------------------------------------------------------
     | Chapter Functions End
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dua Functions Start
+    |--------------------------------------------------------------------------
+    */
+    public function getDuas(Request $request)
+    {
+        $all = $request->allData;
+        if (empty($all)) {
+            $duas = DB::table('duas')->paginate(50);
+            $status = true;
+            return response()->json(compact('status', 'duas'));
+        } else {
+            $duas = DB::table('suras')->get();
+            $status = true;
+            return response()->json(compact('status', 'duas'));
+        }
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | Dua Functions End
     |--------------------------------------------------------------------------
     */
 
