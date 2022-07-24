@@ -339,6 +339,60 @@ class ApiController extends Controller
         $status = true;
         return response()->json(compact('status', 'dua'));
     }
+
+    public function updateDua(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'banglaName' => 'required',
+                'arabicName' => 'required',
+                'banglaText' => 'required',
+                'arabicText' => 'required',
+                'type' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $save = DB::table('duas')->where('id', $request->id)->update(
+            [
+                'banglaName' => $request->banglaName,
+                'arabicName' => $request->arabicName,
+                'banglaText' => $request->banglaText,
+                'arabicText' => $request->arabicText,
+                'type' => $request->type
+            ]
+        );
+        if ($save) {
+            $status = true;
+            return response()->json(compact('status'));
+        } else {
+            $status = false;
+            return response()->json(compact('status'));
+        }
+    }
+    public function deleteDua(Request $request)
+    {
+        $id = $request->id;
+        if (!empty($id)) {
+            $deleted = DB::table('duas')->where('id', $id)->delete();
+            if ($deleted) {
+                $status = true;
+                $message = 'Dua deleted';
+                return response()->json(compact('status', 'message'));
+            } else {
+                $status = false;
+                $error = 'Dua not found';
+                return response()->json(compact('status', 'error'));
+            }
+        } else {
+            $status = false;
+            $error = 'Dua not found';
+            return response()->json(compact('status', 'error'));
+        }
+    }
     /*
     |--------------------------------------------------------------------------
     | Dua Functions End

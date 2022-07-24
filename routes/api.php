@@ -35,8 +35,8 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::get('/dua', [\App\Http\Controllers\ApiController::class, 'getDuas']);
     Route::get('/dua/{id}', [\App\Http\Controllers\ApiController::class, 'getDua']);
     Route::post('/dua/save', [\App\Http\Controllers\ApiController::class, 'storeDua']);
-    Route::post('/customer/update', [\App\Http\Controllers\ApiController::class, 'updateCustomer']);
-    Route::post('/customer/delete', [\App\Http\Controllers\ApiController::class, 'deleteCustomer']);
+    Route::post('/dua/update', [\App\Http\Controllers\ApiController::class, 'updateDua']);
+    Route::post('/dua/delete', [\App\Http\Controllers\ApiController::class, 'deleteDua']);
 
     Route::get('/supplier', [\App\Http\Controllers\ApiController::class, 'getSuppliers']);
     Route::get('/supplier/{id}', [\App\Http\Controllers\ApiController::class, 'getSupplier']);
