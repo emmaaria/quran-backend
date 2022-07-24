@@ -289,8 +289,13 @@ class ApiController extends Controller
     public function getDuas(Request $request)
     {
         $all = $request->allData;
+        $type = $request->type;
         if (empty($all)) {
             $duas = DB::table('duas')->paginate(50);
+            $status = true;
+            return response()->json(compact('status', 'duas'));
+        }elseif (!empty($type)){
+            $duas = DB::table('duas')->where('type',$type)->get();
             $status = true;
             return response()->json(compact('status', 'duas'));
         } else {
