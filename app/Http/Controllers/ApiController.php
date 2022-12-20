@@ -406,6 +406,124 @@ class ApiController extends Controller
 
     /*
     |--------------------------------------------------------------------------
+    | Post Functions Start
+    |--------------------------------------------------------------------------
+    */
+    public function getPosts(Request $request)
+    {
+        $all = $request->allData;
+        if (empty($all)) {
+            $posts = DB::table('posts')->paginate(50);
+            $status = true;
+            return response()->json(compact('status', 'posts'));
+        } else {
+            $posts = DB::table('posts')->get();
+            $status = true;
+            return response()->json(compact('status', 'posts'));
+        }
+    }
+
+    public function storePost(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'arabic' => 'required',
+                'sura' => 'required',
+                'serial' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $save = DB::table('chapters')->insert(
+            [
+                'arabic' => $request->arabic,
+                'bangla' => $request->bangla,
+                'shortTafsil' => $request->shortTafsil,
+                'longTafsil' => $request->longTafsil,
+                'serial' => $request->serial,
+                'sura' => $request->sura,
+            ]
+        );
+        if ($save) {
+            $status = true;
+            return response()->json(compact('status'));
+        } else {
+            $status = false;
+            return response()->json(compact('status'));
+        }
+    }
+
+    public function deletePost(Request $request)
+    {
+        $id = $request->id;
+        if (!empty($id)) {
+            $deleted = DB::table('chapters')->where('id', $id)->delete();
+            if ($deleted) {
+                $status = true;
+                $message = 'Chapter deleted';
+                return response()->json(compact('status', 'message'));
+            } else {
+                $status = false;
+                $error = 'Chapter not found';
+                return response()->json(compact('status', 'error'));
+            }
+        } else {
+            $status = false;
+            $error = 'Chapter not found';
+            return response()->json(compact('status', 'error'));
+        }
+    }
+
+    public function getPost($id)
+    {
+        $chapter = DB::table('chapters')->where('id', $id)->first();
+        $status = true;
+        return response()->json(compact('status', 'chapter'));
+    }
+
+    public function updatePost(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'arabic' => 'required',
+                'sura' => 'required',
+                'serial' => 'required',
+                'id' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+            return response()->json(compact('status', 'errors'));
+        }
+        $save = DB::table('chapters')->where('id', $request->id)->update(
+            [
+                'arabic' => $request->arabic,
+                'bangla' => $request->bangla,
+                'shortTafsil' => $request->shortTafsil,
+                'longTafsil' => $request->longTafsil,
+                'serial' => $request->serial
+            ]
+        );
+        if ($save) {
+            $status = true;
+            return response()->json(compact('status'));
+        } else {
+            $status = false;
+            return response()->json(compact('status'));
+        }
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | Post Functions End
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+    |--------------------------------------------------------------------------
     | Frontend Functions Start
     |--------------------------------------------------------------------------
     */

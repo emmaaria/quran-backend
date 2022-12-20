@@ -38,21 +38,9 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('/dua/update', [\App\Http\Controllers\ApiController::class, 'updateDua']);
     Route::post('/dua/delete', [\App\Http\Controllers\ApiController::class, 'deleteDua']);
 
-    Route::get('/supplier', [\App\Http\Controllers\ApiController::class, 'getSuppliers']);
-    Route::get('/supplier/{id}', [\App\Http\Controllers\ApiController::class, 'getSupplier']);
-    Route::post('/supplier/store', [\App\Http\Controllers\ApiController::class, 'storeSupplier']);
-    Route::post('/supplier/update', [\App\Http\Controllers\ApiController::class, 'updateSupplier']);
-    Route::post('/supplier/delete', [\App\Http\Controllers\ApiController::class, 'deleteSupplier']);
-
-    Route::get('/purchase', [\App\Http\Controllers\ApiController::class, 'getPurchases']);
-    Route::get('/purchase/{id}', [\App\Http\Controllers\ApiController::class, 'getPurchase']);
-    Route::post('/purchase/store', [\App\Http\Controllers\ApiController::class, 'storePurchase']);
-    Route::post('/purchase/update', [\App\Http\Controllers\ApiController::class, 'updatePurchase']);
-    Route::post('/purchase/delete', [\App\Http\Controllers\ApiController::class, 'deletePurchase']);
-
-    Route::get('/product', [\App\Http\Controllers\ApiController::class, 'getProducts']);
-    Route::get('/product/{id}', [\App\Http\Controllers\ApiController::class, 'getProduct']);
-    Route::post('/product/store', [\App\Http\Controllers\ApiController::class, 'storeProduct']);
-    Route::post('/product/update', [\App\Http\Controllers\ApiController::class, 'updateProduct']);
-    Route::post('/product/delete', [\App\Http\Controllers\ApiController::class, 'deleteProduct']);
+    Route::get('/post', [\App\Http\Controllers\ApiController::class, 'getPosts']);
+    Route::get('/post/{id}', [\App\Http\Controllers\ApiController::class, 'getPost']);
+    Route::post('/post/save', [\App\Http\Controllers\ApiController::class, 'storePost']);
+    Route::post('/post/update', [\App\Http\Controllers\ApiController::class, 'updatePost']);
+    Route::post('/post/delete', [\App\Http\Controllers\ApiController::class, 'deletePost']);
 });
