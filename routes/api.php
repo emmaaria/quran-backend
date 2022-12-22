@@ -39,6 +39,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('/dua/delete', [\App\Http\Controllers\ApiController::class, 'deleteDua']);
 
     Route::get('/post', [\App\Http\Controllers\ApiController::class, 'getPosts']);
+    Route::get('/latest-post', [\App\Http\Controllers\ApiController::class, 'getLatestPosts']);
     Route::get('/post/{id}', [\App\Http\Controllers\ApiController::class, 'getPost']);
     Route::post('/post/save', [\App\Http\Controllers\ApiController::class, 'storePost']);
     Route::post('/post/update', [\App\Http\Controllers\ApiController::class, 'updatePost']);

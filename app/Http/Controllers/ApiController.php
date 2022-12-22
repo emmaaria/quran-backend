@@ -540,6 +540,14 @@ class ApiController extends Controller
         $status = true;
         return response()->json(compact('status', 'chapters'));
     }
+
+    public function getLatestPosts()
+    {
+        $posts = DB::table('chapters')
+            ->limit(5)->get();
+        $status = true;
+        return response()->json(compact('status', 'posts'));
+    }
     /*
     |--------------------------------------------------------------------------
     | Frontend Functions End
