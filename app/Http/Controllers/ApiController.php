@@ -453,28 +453,28 @@ class ApiController extends Controller
     {
         $id = $request->id;
         if (!empty($id)) {
-            $deleted = DB::table('chapters')->where('id', $id)->delete();
+            $deleted = DB::table('posts')->where('id', $id)->delete();
             if ($deleted) {
                 $status = true;
-                $message = 'Chapter deleted';
+                $message = 'Post deleted';
                 return response()->json(compact('status', 'message'));
             } else {
                 $status = false;
-                $error = 'Chapter not found';
+                $error = 'Post not found';
                 return response()->json(compact('status', 'error'));
             }
         } else {
             $status = false;
-            $error = 'Chapter not found';
+            $error = 'Post not found';
             return response()->json(compact('status', 'error'));
         }
     }
 
     public function getPost($id)
     {
-        $chapter = DB::table('chapters')->where('id', $id)->first();
+        $post = DB::table('posts')->where('id', $id)->first();
         $status = true;
-        return response()->json(compact('status', 'chapter'));
+        return response()->json(compact('status', 'post'));
     }
 
     public function updatePost(Request $request)
