@@ -491,7 +491,7 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        $save = DB::table('chapters')->where('id', $request->id)->update(
+        $save = DB::table('posts')->where('id', $request->id)->update(
             [
                 'title' => $request->title,
                 'data' => $request->data,
