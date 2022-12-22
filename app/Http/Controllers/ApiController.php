@@ -12,7 +12,7 @@ class ApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters', 'getChapterBySura', 'searchChapters','getDuas', 'getDua']]);
+        $this->middleware('auth.custom:api', ['except' => ['login', 'getSuras', 'getChapters', 'getChapterBySura', 'searchChapters','getDuas', 'getDua', 'getLatestPosts']]);
     }
 
     protected function guard()
