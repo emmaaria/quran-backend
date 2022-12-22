@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chapter;
-use App\Models\Sura;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -427,9 +425,8 @@ class ApiController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-                'arabic' => 'required',
-                'sura' => 'required',
-                'serial' => 'required',
+                'title' => 'required',
+                'data' => 'required',
             ]
         );
         if ($validator->fails()) {
@@ -437,14 +434,10 @@ class ApiController extends Controller
             $errors = $validator->errors();
             return response()->json(compact('status', 'errors'));
         }
-        $save = DB::table('chapters')->insert(
+        $save = DB::table('posts')->insert(
             [
-                'arabic' => $request->arabic,
-                'bangla' => $request->bangla,
-                'shortTafsil' => $request->shortTafsil,
-                'longTafsil' => $request->longTafsil,
-                'serial' => $request->serial,
-                'sura' => $request->sura,
+                'title' => $request->title,
+                'content' => $request->data,
             ]
         );
         if ($save) {
