@@ -543,7 +543,7 @@ class ApiController extends Controller
 
     public function getLatestPosts()
     {
-        $posts = DB::table('chapters')
+        $posts = DB::table('posts')
             ->limit(5)->get();
         $status = true;
         return response()->json(compact('status', 'posts'));
