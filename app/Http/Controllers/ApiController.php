@@ -481,9 +481,8 @@ class ApiController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-                'arabic' => 'required',
-                'sura' => 'required',
-                'serial' => 'required',
+                'title' => 'required',
+                'data' => 'required',
                 'id' => 'required',
             ]
         );
@@ -494,11 +493,8 @@ class ApiController extends Controller
         }
         $save = DB::table('chapters')->where('id', $request->id)->update(
             [
-                'arabic' => $request->arabic,
-                'bangla' => $request->bangla,
-                'shortTafsil' => $request->shortTafsil,
-                'longTafsil' => $request->longTafsil,
-                'serial' => $request->serial
+                'title' => $request->title,
+                'data' => $request->data,
             ]
         );
         if ($save) {
