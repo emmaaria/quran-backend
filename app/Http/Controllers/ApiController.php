@@ -494,7 +494,7 @@ class ApiController extends Controller
         $save = DB::table('posts')->where('id', $request->id)->update(
             [
                 'title' => $request->title,
-                'data' => $request->data,
+                'content' => $request->data,
             ]
         );
         if ($save) {
